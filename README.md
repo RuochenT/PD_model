@@ -48,8 +48,10 @@ Calibration: ability to make unbiased estimates of the outcome ( the accuracy of
 
 ## References 
 				
-Basel Committee on Banking Supervision (2005, February). Working paper no. 14: Studies on the validation of internal ratings systems. 
-Basel Committee on Banking Supervision (2020, March). IRB approach: minimum requirements to use IRB approach 
+Basel Committee on Banking Supervision (2005, February). Working paper no. 14: Studies on the validation of internal ratings systems.
+
+Basel Committee on Banking Supervision (2020, March). IRB approach: minimum requirements to use IRB approach. 
+
 Medema, L., Koning, R.H., & Lensink, R. (2009). A Practical Approach to Validating a PD Model. Journal of Banking and Finance, 33, 701-708.
 
 
