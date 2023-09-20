@@ -37,6 +37,10 @@ Discrimination: ability to separate defaulters and non-defaulters.
 2. Receiver Operating Characteristic (ROC curve)
 3. Brier score 
 
+- we focus on Gini coefficient which is used to measure the inequality between non defaulted and defaulted in a population.
+- It is a plot of cumulative percentage of all borrowers on the X axis and the cumulative percentage of bad borrowers on the Y axis.
+- Our gini coefficient is 40.32%. It suggests that, on average, the default rates are relatively evenly distributed across two groups of borrowers.
+
 Calibration: ability to make unbiased estimates of the outcome ( the accuracy of the estimated PD).
 1. Binomial test
 2. Chi-square statistics 
