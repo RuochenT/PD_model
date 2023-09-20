@@ -1,4 +1,7 @@
 # The probability of default model 
+## Data 
+the data includes all loans issued from 2007 - 2015. The file is a matrix of 890,000 observations and 75 variables which I cannot include the file in here. 
+please follow this link for data set https://www.dropbox.com/s/tq3xz0piqitnc59/loan_data_2007_2014.csv?dl=0 
 ## Variable selection 
 1. Relevance: should relate to the default risk.
 2. Data quality and availability: complete and reliable.
