@@ -59,7 +59,9 @@ Calibration: ability to make unbiased estimates of the outcome ( the accuracy of
 2. Data imbalance: The number of defaults is much smaller and can pose a bias to the model, especially in the false negative class (predicted as non-default but actually default). Use SMOTE to oversample minority class.
 
 ## Apply the model to decision making
-We can calculating PD of individual accounts by applying predict() to the test dataset
+- Scorecard: The PD model must be easy to understand and interpret since it will trasform into a scorecard tool. The scorecard is used to process an individual credit worthiness assessment that direactly corresponds to a specific probability of default. In order to turn it into a tool, we need to turn the coefficient from the model into simple scores. In this case, we turn specify the minimum 300 and the maximum 850. Then, we rescale the credit worthiness from our model into desired scores. You can read more about the detail here https://altair.com/newsroom/articles/credit-scoring-series-part-five-credit-scorecard-development
+
+- Setting cutoffs: The cutoff rate is being used for taking a decision on whether to approve a loan application or not.If we set a given probability of default as a cutoff, all borrowers with a lower probability of default than the cutoff will be granted a loan. Naturally, there is a trade off between the two. If we want to grant more loans, we will be inevitably accepting lower quality borrowers. The other side of the coin is that if we only approve the most creditworthy borrowers, we will end up with very few loans. The cutoff point is decided based on those two factors how many borrowers would be accepted and rejected, and what would the credit worthiness of the accepted borrowers be? If a bank wants more business, it will set a lower cutoff in terms of credit worthiness or probability of non default. And if the bank wants to lend to fewer borrowers with higher credit worthiness, it will set a higher cutoff point in terms of probability of non default.
 
 ## References 
 				
