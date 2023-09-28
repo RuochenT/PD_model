@@ -18,10 +18,10 @@ please follow this link for data set https://www.dropbox.com/s/tq3xz0piqitnc59/l
 3. Dummy coding: A technique used to represent categorical variables in a binary format. We create dummy variables for all coarse classes except the reference class.
 
 ## Data preparation summary 
-1.Encode dependent variable as 1 and 0 (Charged Off', 'Default', 'Does not meet the credit policy. Status:Charged Off’, 'Late (31-120 days)'
-2. Split the data train-test get input and target for both data frame
+1. Encode dependent variable as 1 and 0 (Charged Off', 'Default', 'Does not meet the credit policy. Status:Charged Off’, 'Late (31-120 days)'.
+2. Split the data train-test get input and target for both data frame.
 3. Discrete <20: Coarse classing on discrete variables which have few distinct values based on WoE and number of observations in each group. (if WoE high > there is bad more than good, relate to default more).
-4. We make a reference category the category with lowest weight of evidence
+4. We make a reference category the category with lowest weight of evidence.
 5. Continuous (month since issue,income) or discrete> 20:
 - Fine classing by roughly grouping the values into categories/intervals (pd.cut), 2.) Coarse classing by combining some initial fine classing categories into bigger ones based on woe and number of obs for each category (similar woe, varies woe but small obs, high obs).
 6. When we plot woe and see if there is no pattern between variable and woe, then there is no relation between them. We drop the variable.
