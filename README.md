@@ -2,30 +2,30 @@
 ## Data 
 the data includes all loans issued from 2007 - 2015. The file is a matrix of 890,000 observations and 75 variables which I cannot include the file in here. 
 please follow this link for data set https://www.dropbox.com/s/tq3xz0piqitnc59/loan_data_2007_2014.csv?dl=0 
+
 ## Variable selection 
 1. Relevance: should relate to the default risk.
 2. Data quality and availability: complete and reliable.
 3. Independence between variables: avoid multicollinearity.  
-4.Interpretability: variables should have a clear economic and financial interpretation.
+4. Interpretability: variables should have a clear economic and financial interpretation.
 5. Predictive power: should have significant association with default variable. Assess by using chi-square, pearson coefficient, information value.
 
-## Example of Varaibles 
-**General client information**: Sector/industry, years in business, ownership type.
 
-**Credit history**: credit utilization, outstanding debt, length of credit history, past defaults.
-Financial health, Debt Service Coverage Ratio (DSCR), Capital Gearing Ratio, debt-to-asset ratio, quick ratio.
-Credit product
-
-**Loan characteristics**: loan amount, type of loan, collateral type, repayment terms, the interest rate, Loan-to-Value (LTV) ratio.
-External data, GDP growth rate, Credit ratings (S&P Global Ratings, Moody’s, DBRS Ratings Limited).
-
-## Target Variable: default variable
-Encode categorical variable by using label encoding as 1 for default and 0 for not default. 
 
 ## Variable Transformation
 1. Fine classing: applied to continuous and discrete with high cardinality.
 2. Coarse classing: we optimize number of the bins based on Weight of Evidence (WoE)  and number of observation for each category.
 3. Dummy coding: A technique used to represent categorical variables in a binary format. We create dummy variables for all coarse classes except the reference class.
+
+## Data preparation summary 
+1.Encode dependent variable as 1 and 0 (Charged Off', 'Default', 'Does not meet the credit policy. Status:Charged Off’, 'Late (31-120 days)'
+2. Split the data train-test get input and target for both data frame
+3. Discrete <20: Coarse classing on discrete variables which have few distinct values based on WoE and number of observations in each group. (if WoE high > there is bad more than good, relate to default more).
+4. We make a reference category the category with lowest weight of evidence
+5. Continuous (month since issue,income) or discrete> 20:
+- Fine classing by roughly grouping the values into categories/intervals (pd.cut), 2.) Coarse classing by combining some initial fine classing categories into bigger ones based on woe and number of obs for each category (similar woe, varies woe but small obs, high obs).
+6. When we plot woe and see if there is no pattern between variable and woe, then there is no relation between them. We drop the variable.
+7. If there are missing values, we can create one dummy variable for missing value. 
 
 ## Important Model Features (why logistic regression?)
 1. Interpretable: not a black box model and being able to explain the relationship.
@@ -35,23 +35,31 @@ Encode categorical variable by using label encoding as 1 for default and 0 for n
 5. Scalability and efficiency: handle large volumes & able to do real-time predictions.
 
 ## Model Validation 
-Discrimination: ability to separate defaulters and non-defaulters.
+In a statistical framework we face two possible kinds of errors: A Type I error, which indicates low default risk when in fact the risk is high, and a Type II error, which conversely indicates high default risk when in fact risk is low. From a supervisory viewpoint, Type I error is more problematic, as it produces higher costs. (The model predicted no default and the borrower defaulted — False Negative).
+
+Discrimination: determine the power of discrimination that a model exhibits in warning of default risk over a given horizon.
 1. Gini curve (Gini coefficient) 
 2. Receiver Operating Characteristic (ROC curve)
-3. Brier score 
-
-- we focus on Gini coefficient which is used to measure the inequality between non defaulted and defaulted in a population.
-- It is a plot of cumulative percentage of all borrowers on the X axis and the cumulative percentage of bad borrowers on the Y axis.
-- Our gini coefficient is 40.32%. It suggests that, on average, the default rates are relatively evenly distributed across two groups of borrowers.
+3. Brier score
 
 Calibration: ability to make unbiased estimates of the outcome ( the accuracy of the estimated PD).
 1. Binomial test
 2. Chi-square statistics 
 
+## Gini coefficient 
+
+- we focus on Gini coefficient which is used to measure the inequality between non defaulted and defaulted in a population.
+- It is a plot of cumulative percentage of all borrowers on the X axis and the cumulative percentage of bad borrowers on the Y axis.
+- The Gini coefficient is a ratio that represents how close our model to be a “perfect model” and how far it is from being a “random model.” Thus, a
+“perfect model” would get a Gini coefficient of 1, and a “random model” would get a Gini coefficient of 0.
+- Our gini coefficient is 40.32% (AUROC * 2 - 1). It suggests that, on average, the default rates are relatively evenly distributed across two groups of borrowers.
+
 ## Challenges of the Probability of Default Model
 1. Model monitoring: The data should be representative as required by the Basel III accord. However, the values change over time (e.g., income). We can use the population stability index (PSI) to check if the previous data still represents the new data. If not, retrain the model with the new data.
 2. Data imbalance: The number of defaults is much smaller and can pose a bias to the model, especially in the false negative class (predicted as non-default but actually default). Use SMOTE to oversample minority class.
 
+## Apply the model to decision making
+We can calculating PD of individual accounts by applying predict() to the test dataset
 
 ## References 
 				
